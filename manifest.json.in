@@ -1,0 +1,15 @@
+{
+    "name": "rings.fsieb",
+    "description": "UBports application for manage password.",
+    "architecture": "@CLICK_ARCH@",
+    "title": "Rings",
+    "hooks": {
+        "rings": {
+            "apparmor": "rings.apparmor",
+            "desktop":  "rings.desktop"
+        }
+    },
+    "version": "@BUILD_VERSION@",
+    "maintainer": "Frederic SIEBERT <fsieb@protonmail.com>",
+    "framework" : "ubuntu-sdk-16.04"
+}
