@@ -35,8 +35,29 @@ MainView {
 
         header: PageHeader {
             id: header
-            title: i18n.tr('Rings')
+            title: i18n.tr('')
+            Row {
+                anchors.verticalCenter: parent.verticalCenter
+                spacing: 20
+
+                Image {
+                    id: logo
+                    source: "../assets/image/ring.png"
+                }
+
+                Label {
+                    text: "Rings"
+                    font.pixelSize: 22
+                    color: "steelblue"
+                }
+
+                Button {
+                    id: button_menu
+                    text: "..."
+                }
+            }
         }
+
 
         Label {
             anchors {

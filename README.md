@@ -1,6 +1,6 @@
 # Rings
 
-UBports application for manage password.
+UBports application for store and manage password.
 
 ## License
 
