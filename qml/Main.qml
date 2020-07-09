@@ -14,9 +14,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.7
+import QtQuick 2.9
 import Ubuntu.Components 1.3
-//import QtQuick.Controls 2.2
+import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 import Qt.labs.settings 1.0
 import io.thp.pyotherside 1.3
@@ -31,6 +31,7 @@ MainView {
     height: units.gu(75)
 
     Page {
+        id: mainPage
         anchors.fill: parent
 
         header: PageHeader {
@@ -69,13 +70,73 @@ MainView {
                         source: "../assets/image/help.png"
                         MouseArea {
                             anchors.fill: parent
-                            onClicked: { parent.source = "" }
+                            onClicked: { aboutPopup1.open() }
                         }
                     }
                 }
             }
         }
 
+        Popup {
+            id: aboutPopup1
+            padding: 10
+            width: units.gu(37)
+            height: about1a.height + about1b.height + about1c.height + about1d.height + about1Button.height + units.gu(3)
+            x: Math.round((parent.width - width) / 2)
+            y: Math.round((parent.height - height) / 2)
+            z: mainPage.z + 6
+            modal: true
+            focus: true
+            closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
+
+            Text {
+                id: about1a
+                anchors.top: parent.top
+                anchors.left: parent.left
+                font.bold: true
+                font.pixelSize: units.gu(4.5)
+                text: "About this app"
+            }
+
+            Text {
+                id: about1b
+                padding: units.gu(1)
+                anchors.top: about1a.bottom
+                width: parent.width
+                wrapMode: Text.Wrap
+                text: "Rings is a simple UBports apps for managing your account and password. The principe is inspired by lord of the rings [one for rules them all]. You create one ring (a encrypted database) and inside multiple rings (account with password information)."
+            }
+
+            Text {
+                id: about1c
+                padding: units.gu(1)
+                anchors.top: about1b.bottom
+                width: parent.width
+                wrapMode: Text.Wrap
+                font.bold: true
+                text: "Warning: This is a simple apps... use it at your own risks :)"
+            }
+
+            Text {
+                id: about1d
+                padding: units.gu(1)
+                anchors.top: about1c.bottom
+                width: parent.width
+                wrapMode: Text.Wrap
+                font.bold: true
+                text: "Note: I am not a developper. Feel free to improve my app..."
+            }
+
+            Button {
+                id: about1Button
+                anchors.top: about1d.bottom
+                width: parent.width
+                text: "Okay"
+                onClicked: {
+                    aboutPopup1.close()
+                }
+            }
+        }
 
         Label {
             anchors {

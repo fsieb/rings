@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the rings.fsieb package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#: ../qml/Main.qml:38
+#: ../qml/Main.qml:39
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: rings.fsieb\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-09 18:20+0000\n"
+"POT-Creation-Date: 2020-07-09 19:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../qml/Main.qml:87
+#: ../qml/Main.qml:148
 msgid "Check the logs!"
 msgstr ""
 
