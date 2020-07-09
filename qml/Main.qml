@@ -36,24 +36,42 @@ MainView {
         header: PageHeader {
             id: header
             title: i18n.tr('')
-            Row {
-                anchors.verticalCenter: parent.verticalCenter
-                spacing: 20
+            Rectangle {
+                anchors.fill: parent
+                color: "#9ACD32"
 
-                Image {
-                    id: logo
-                    source: "../assets/image/ring.png"
-                }
+                RowLayout {
+                    anchors.fill: parent
+                    anchors.verticalCenter: parent.verticalCenter
+                    spacing: 20
 
-                Label {
-                    text: "Rings"
-                    font.pixelSize: 22
-                    color: "steelblue"
-                }
+                    Image {
+                        id: logo
+                        source: "../assets/image/ring.png"
+                    }
 
-                Button {
-                    id: button_menu
-                    text: "..."
+                    Label {
+                        text: "Rings"
+                        font.pixelSize: 22
+                        font.family: "MS Serif"
+                        color: "#FFFFFF"
+                    }
+
+                    Item {
+                        // spacer item
+                        Layout.fillWidth: true
+                        height: button_menu.height
+                        Rectangle { anchors.fill: parent; color: "#9ACD32" } // to visualize the spacer
+                    }
+
+                    Image {
+                        id: button_menu
+                        source: "../assets/image/help.png"
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: { parent.source = "" }
+                        }
+                    }
                 }
             }
         }
