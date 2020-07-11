@@ -42,6 +42,7 @@ MainView {
                 color: "#9ACD32"
 
                 RowLayout {
+                    id: head_row
                     anchors.fill: parent
                     anchors.verticalCenter: parent.verticalCenter
                     spacing: 20
@@ -73,6 +74,25 @@ MainView {
                             onClicked: { aboutPopup1.open() }
                         }
                     }
+                }
+            }
+        }
+
+        ToolBar {
+            width: head_row.width
+            RowLayout {
+                anchors.fill: parent
+                Label {
+                    text: ""
+                    elide: Label.ElideRight
+                    horizontalAlignment: Qt.AlignHCenter
+                    verticalAlignment: Qt.AlignVCenter
+                    Layout.fillWidth: true
+                }
+
+                ToolButton {
+                    text: qsTr("Add ring")
+                    onClicked: menu.open()
                 }
             }
         }
