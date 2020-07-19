@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rings.fsieb\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-19 14:44+0000\n"
+"POT-Creation-Date: 2020-07-19 14:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,10 +17,6 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: ../qml/Main.qml:195
-msgid "Check the logs!"
-msgstr ""
 
 #: rings.desktop.in.h:1
 msgid "Rings"

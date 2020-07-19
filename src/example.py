@@ -22,7 +22,6 @@ def speak(text):
 
 def listDb():
     listFilesDb = glob.glob("../assets/db/*.rings")    
-    text = listFilesDb[0]
-    print(text)
+    text = "Essai insertion via python"
     return text
 

@@ -184,19 +184,6 @@ MainView {
 				}
 			}
 		}
-
-		Label {
-			anchors {
-				top: header.bottom
-				left: parent.left
-				right: parent.right
-				bottom: parent.bottom
-			}
-			text: i18n.tr('Check the logs!')
-
-			verticalAlignment: Label.AlignVCenter
-			horizontalAlignment: Label.AlignHCenter
-		}
 	}
 
 	Python {
