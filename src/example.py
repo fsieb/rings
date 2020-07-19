@@ -14,6 +14,15 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
+import glob
+
 def speak(text):
     print(text)
     return text
+
+def listDb():
+    listFilesDb = glob.glob("../assets/db/*.rings")    
+    text = listFilesDb[0]
+    print(text)
+    return text
+

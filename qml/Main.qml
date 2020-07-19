@@ -98,110 +98,127 @@ MainView {
 			}
 		}
 
-		Row {
-			anchors.top: toolbar.bottom 
-			spacing: 2
-			width: head_row.width
+		Rectangle {
+			id: listRowDb
+			anchors.top: toolbar.bottom  
+			width: head_row.width 	
+			height: units.gu(100)
+			ListModel {
+				id: listDb
 
-			Rectangle { 	
-				color: "#F8FFEE" 
-				width: 50 
-				height: 20 
-				Label 	{
-					text: "Premiere base de mp"			}
+				ListElement { 	
+					name: "Example"
 				}
 			}
-			Popup {
-				id: aboutPopup1
-				padding: 10
-				width: units.gu(37)
-				height: about1a.height + about1b.height + about1c.height + about1d.height + about1Button.height + units.gu(3)
-				x: Math.round((parent.width - width) / 2)
-				y: Math.round((parent.height - height) / 2)
-				z: mainPage.z + 6
-				modal: true
-				focus: true
-				closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
-
-				Text {
-					id: about1a
-					anchors.top: parent.top
-					anchors.left: parent.left
-					font.bold: true
-					font.pixelSize: units.gu(4.5)
-					text: "About this app"
-				}
-
-				Text {
-					id: about1b
-					padding: units.gu(1)
-					anchors.top: about1a.bottom
-					width: parent.width
-					wrapMode: Text.Wrap
-					text: "Rings is a simple UBports apps for managing your account and password. The principe is inspired by lord of the rings [one for rules them all]. You create one ring (a encrypted database) and inside multiple rings (account with password information)."
-				}
-
-				Text {
-					id: about1c
-					padding: units.gu(1)
-					anchors.top: about1b.bottom
-					width: parent.width
-					wrapMode: Text.Wrap
-					font.bold: true
-					text: "Warning: This is a simple apps... use it at your own risks :)"
-				}
-
-				Text {
-					id: about1d
-					padding: units.gu(1)
-					anchors.top: about1c.bottom
-					width: parent.width
-					wrapMode: Text.Wrap
-					font.bold: true
-					text: "Note: I am not a developper. Feel free to improve my app..."
-				}
-
-				Button {
-					id: about1Button
-					anchors.top: about1d.bottom
-					width: parent.width
-					text: "Okay"
-					onClicked: {
-						aboutPopup1.close()
-					}
+			Component {
+				id: listDbDelegate
+				Row {
+					spacing: 10
+					Text { text: name}
 				}
 			}
-
-			Label {
-				anchors {
-					top: header.bottom
-					left: parent.left
-					right: parent.right
-					bottom: parent.bottom
-				}
-				text: i18n.tr('Check the logs!')
-
-				verticalAlignment: Label.AlignVCenter
-				horizontalAlignment: Label.AlignHCenter
+			ListView {
+				anchors.fill: parent
+				model: listDb
+				delegate: listDbDelegate
 			}
 		}
 
-		Python {
-			id: python
+		Popup {
+			id: aboutPopup1
+			padding: 10
+			width: units.gu(37)
+			height: about1a.height + about1b.height + about1c.height + about1d.height + about1Button.height + units.gu(3)
+			x: Math.round((parent.width - width) / 2)
+			y: Math.round((parent.height - height) / 2)
+			z: mainPage.z + 6
+			modal: true
+			focus: true
+			closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
 
-			Component.onCompleted: {
-				addImportPath(Qt.resolvedUrl('../src/'));
-
-				importModule('example', function() {
-					console.log('module imported');
-					python.call('example.speak', ['Hello World!'], function(returnValue) {
-						console.log('example.speak returned ' + returnValue);
-					})
-				});
+			Text {
+				id: about1a
+				anchors.top: parent.top
+				anchors.left: parent.left
+				font.bold: true
+				font.pixelSize: units.gu(4.5)
+				text: "About this app"
 			}
 
-			onError: {
-				console.log('python error: ' + traceback);
+			Text {
+				id: about1b
+				padding: units.gu(1)
+				anchors.top: about1a.bottom
+				width: parent.width
+				wrapMode: Text.Wrap
+				text: "Rings is a simple UBports apps for managing your account and password. The principe is inspired by lord of the rings [one for rules them all]. You create one ring (a encrypted database) and inside multiple rings (account with password information)."
 			}
+
+			Text {
+				id: about1c
+				padding: units.gu(1)
+				anchors.top: about1b.bottom
+				width: parent.width
+				wrapMode: Text.Wrap
+				font.bold: true
+				text: "Warning: This is a simple apps... use it at your own risks :)"
+			}
+
+			Text {
+				id: about1d
+				padding: units.gu(1)
+				anchors.top: about1c.bottom
+				width: parent.width
+				wrapMode: Text.Wrap
+				font.bold: true
+				text: "Note: I am not a developper. Feel free to improve my app..."
+			}
+
+			Button {
+				id: about1Button
+				anchors.top: about1d.bottom
+				width: parent.width
+				text: "Okay"
+				onClicked: {
+					aboutPopup1.close()
+				}
+			}
+		}
+
+		Label {
+			anchors {
+				top: header.bottom
+				left: parent.left
+				right: parent.right
+				bottom: parent.bottom
+			}
+			text: i18n.tr('Check the logs!')
+
+			verticalAlignment: Label.AlignVCenter
+			horizontalAlignment: Label.AlignHCenter
 		}
 	}
+
+	Python {
+		id: python
+
+		Component.onCompleted: {
+			addImportPath(Qt.resolvedUrl('../src/'));
+
+			importModule('example', function() {
+				console.log('module imported');
+				python.call('example.speak', ['Hello World!'], function(returnValue) {
+					console.log('example.speak returned ' + returnValue);
+				})
+				python.call('example.listDb', [], function(returnValue) {
+					listDb.append({"name":returnValue});
+					console.log(returnValue);
+				});
+			});
+		}
+
+		onError: {
+			console.log('python error: ' + traceback);
+		}
+	}
+}
