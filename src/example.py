@@ -13,7 +13,7 @@
  You should have received a copy of the GNU General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
-
+import blowfish
 import glob
 
 def speak(text):
@@ -21,7 +21,24 @@ def speak(text):
     return text
 
 def listDb():
-    listFilesDb = glob.glob("../assets/db/*.rings")    
-    text = "Essai insertion via python"
-    return text
+    #Function for list all db in db directory
+    listFilesDb = glob.glob("assets/db/*.rings")
+    i=0
+    #Get the name of each db
+    for myfiles in listFilesDb:
+        splitFile = myfiles.split("/")
+        nameFile = splitFile[len(splitFile)-1]
+        listFilesDb[i] = nameFile.replace(".rings", "")
+        i+=1
+    #Return the list value to qml
+    return listFilesDb 
 
+def encryptDb(userPassword, database):
+    #Encrypt the existing password db
+    dataBaseName = "assets/db/"+ database + ".rings"
+    dbopen = open(dataBaseName, 'r+')
+    contentDb = dbopen.readlines()
+    encryptContent = b"".join(cipher.encrypt_cbc_cts(contentDb, userPassword))
+    dbopen.write(encryptContent)
+    dbopen.close()
+    return 1

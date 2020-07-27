@@ -107,7 +107,7 @@ MainView {
 				id: listDb
 
 				ListElement { 	
-					name: "Example"
+					name: ""
 				}
 			}
 			Component {
@@ -198,8 +198,9 @@ MainView {
 					console.log('example.speak returned ' + returnValue);
 				})
 				python.call('example.listDb', [], function(returnValue) {
-					listDb.append({"name":returnValue});
-					console.log(returnValue);
+					for(var i=0; i<returnValue.length; i++) {
+						listDb.append({"name":returnValue[i]});
+					}
 				});
 			});
 		}
