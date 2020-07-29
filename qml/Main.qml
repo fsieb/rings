@@ -103,26 +103,31 @@ MainView {
 			anchors.top: toolbar.bottom  
 			width: head_row.width 	
 			height: units.gu(100)
+            color: '#FAEBD7'
 			ListModel {
 				id: listDb
-
-				ListElement { 	
-					name: ""
-				}
 			}
 		
 			Component {
 				id: listDbDelegate
-				Row {
-					spacing: 100
-					Text { 
-                        text: 'Nom de la DB : ' + name
-                        MouseArea {
-                            anchors.fill: parent
-                            onClicked: {python.call('example.speak2', [name], function(returnValue)     {console.log(returnValue)});}
+                Rectangle {
+                    width: head_row.width   
+                    height: units.gu(6)
+                    color: '#FAEBD7'
+                    border.width: 1
+                    border.color: '#A9A9A9'
+    				Row {
+    					spacing: 10
+    					Text { 
+                            text: '<br><b>Rings : </b>' + name
+                            color: '#228B22'
                         }
+    				}
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {python.call('example.speak2', [name], function(returnValue)     {console.log(returnValue)});}
                     }
-				}
+                }
 			}
 			ListView {
 				id: listView1
