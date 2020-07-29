@@ -115,7 +115,13 @@ MainView {
 				id: listDbDelegate
 				Row {
 					spacing: 100
-					Text { text: 'Nom de la DB : ' + name}
+					Text { 
+                        text: 'Nom de la DB : ' + name
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: {python.call('example.speak2', [name], function(returnValue)     {console.log(returnValue)});}
+                        }
+                    }
 				}
 			}
 			ListView {
@@ -123,10 +129,6 @@ MainView {
 				anchors.fill: parent
 				model: listDb
 				delegate: listDbDelegate
-				MouseArea {
-					anchors.fill: parent
-					onClicked: {python.call('example.speak2', [listDb.get(parent.currentIndex).name], function(returnValue) {console.log(returnValue)});}
-				}
 			}
 		}
 
