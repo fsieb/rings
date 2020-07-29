@@ -20,6 +20,9 @@ def speak(text):
     print(text)
     return text
 
+def speak2(text):
+    return text
+
 def listDb():
     #Function for list all db in db directory
     listFilesDb = glob.glob("assets/db/*.rings")
@@ -42,3 +45,13 @@ def encryptDb(userPassword, database):
     dbopen.write(encryptContent)
     dbopen.close()
     return 1
+
+def decryptDb(userPassword, database):
+    #Decrypt database with userpassword
+    dataBaseName = "assets/db/"+ database + ".rings"
+    dbopen = open(dataBaseName, 'r+')
+    contentDb = dbopen.readlines()
+    decryptContent= b"".join(cipher.decrypt_cbc_cts(contentDb, userPassword))
+    dbopen.close()
+    return decryptContent 
+

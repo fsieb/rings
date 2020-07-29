@@ -110,17 +110,23 @@ MainView {
 					name: ""
 				}
 			}
+		
 			Component {
 				id: listDbDelegate
 				Row {
-					spacing: 10
-					Text { text: name}
+					spacing: 100
+					Text { text: 'Nom de la DB : ' + name}
 				}
 			}
 			ListView {
+				id: listView1
 				anchors.fill: parent
 				model: listDb
 				delegate: listDbDelegate
+				MouseArea {
+					anchors.fill: parent
+					onClicked: {python.call('example.speak2', [listDb.get(parent.currentIndex).name], function(returnValue) {console.log(returnValue)});}
+				}
 			}
 		}
 
